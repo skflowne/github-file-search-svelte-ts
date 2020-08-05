@@ -8,6 +8,8 @@ import typescript from "@rollup/plugin-typescript"
 
 const production = !process.env.ROLLUP_WATCH
 
+console.log("production", production)
+
 function serve() {
     let server
 

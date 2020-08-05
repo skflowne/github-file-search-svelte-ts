@@ -17,17 +17,14 @@
     class:bg-blue-100={active}
     class="list-item w-full flex flex-row items-center justify-between py-1 px-4 border border-gray-200">
     <div class="file">
-        <span
-            class="file-icon text-xl px-1 pr-2"
-            class:text-blue-400={type === 'file'}
-            class:text-yellow-600={type === 'folder'}>
+        <span class={`file-icon text-xl px-1 pr-2 ${type === 'file' ? 'text-blue-400' : 'text-yellow-600'}`}>
             {#if type === 'file'}
                 <Icon data={faFileCode} />
             {:else}
                 <Icon data={faFolder} />
             {/if}
         </span>
-        <span class:text-blue-500={type === 'file'} class:text-yellow-700={type === 'folder'}>
+        <span class={`${type === 'file' ? 'text-blue-500' : 'text-yellow-700'}`}>
             {@html name}
         </span>
     </div>
