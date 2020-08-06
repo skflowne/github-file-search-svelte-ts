@@ -2,20 +2,19 @@
     import { onMount } from "svelte"
 
     import Tailwind from "./Tailwind.svelte"
-    import Header from "./components/Header.svelte"
     import FileList from "./components/file-search/FileList.svelte"
-    import Search from "./components/file-search/Search.svelte"
+    import FileSearch from "./components/file-search/FileSearch.svelte"
     import InfoMessage from "./components/file-search/InfoMessage.svelte"
 
     import files from "./store/files"
     import fileSearchResults from "./store/fileSearchResults"
     import fileIndex from "./store/fileIndex"
+    import Header from "./components/Header.svelte"
 
     let searching = false
 
     const handleKeyUp = (e: KeyboardEvent) => {
-        console.log("keyup", e.key, e)
-        if (e.key === "t") {
+        if (e.key === "t" || e.key === "T") {
             searching = true
         }
 
@@ -35,16 +34,14 @@
     }
 
     onMount(() => {
-        addEventListener("keyup", handleKeyUp)
-        addEventListener("keydown", handleKeyDown)
+        document.addEventListener("keyup", handleKeyUp)
+        document.addEventListener("keydown", handleKeyDown)
 
         return () => {
-            removeEventListener("keyup", handleKeyUp)
-            removeEventListener("keydown", handleKeyDown)
+            document.removeEventListener("keyup", handleKeyUp)
+            document.removeEventListener("keydown", handleKeyDown)
         }
     })
-
-    $: console.log("index", $fileIndex)
 </script>
 
 <Tailwind />
@@ -52,7 +49,7 @@
     <Header />
     {#if searching}
         <InfoMessage />
-        <Search />
+        <FileSearch />
     {/if}
     <FileList {searching} files={searching ? $fileSearchResults : $files} />
 </main>

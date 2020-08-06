@@ -1,1 +1,1 @@
-<h1 class="w-full text-center p-4 text-2xl text-gray-800">GitHub File Search</h1>
+<h1 class="text-xl text-gray-800 w-full text-center my-2">Github File Search</h1>

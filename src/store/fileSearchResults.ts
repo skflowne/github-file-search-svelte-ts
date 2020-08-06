@@ -6,7 +6,9 @@ import fileIndex from "./fileIndex"
 const results = derived([fileSearch, files], ([$fileSearch, $files]) => {
     const isSearchEmpty = $fileSearch.trim().length === 0
     const allFiles = $files.filter((t) => t.type === "file")
+
     fileIndex.set(0)
+
     if (isSearchEmpty) {
         return allFiles
     } else {
