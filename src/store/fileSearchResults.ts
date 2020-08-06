@@ -12,6 +12,7 @@ const results = derived([fileSearch, files], ([$fileSearch, $files]) => {
     if (isSearchEmpty) {
         return allFiles
     } else {
+        const pattern = new RegExp($fileSearch, "gi")
         return allFiles
             .filter((f) => {
                 const filename = f.name.toLocaleLowerCase()
@@ -19,7 +20,6 @@ const results = derived([fileSearch, files], ([$fileSearch, $files]) => {
                 return filename.includes(search)
             })
             .map((f) => {
-                const pattern = new RegExp($fileSearch, "gi")
                 return {
                     ...f,
                     name: f.name.replace(pattern, (match) => `<mark>${match}</mark>`),
